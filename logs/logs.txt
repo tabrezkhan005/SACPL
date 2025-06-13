@@ -1,0 +1,152 @@
+    # SACPL Project Instance Logs
+# This file tracks all successful and failed attempts during development
+
+## Successful Attempts:
+
+### [2024-12-29] Hydration Mismatch Fix
+- **Issue**: React hydration mismatch error caused by browser extension adding data-redeviation-bs-uid attribute
+- **Solution**: Added suppressHydrationWarning={true} to html element in layout.tsx
+- **Additional Changes**:
+  - Updated font from Geist to Radio Canada Big as per project requirements
+  - Fixed font weight configuration (removed unsupported weight "300")
+  - Updated globals.css to properly configure Radio Canada Big font
+  - Added comprehensive comments throughout the code
+- **Status**: SUCCESSFUL
+- **Technical Details**: Used Next.js 14 suppressHydrationWarning prop to handle browser extension attributes
+
+### [2024-12-29] Landing Page Creation
+- **Task**: Create modern company landing page with header, footer, and hero section
+- **Components Created**:
+  - Header component with responsive navigation and mobile menu
+  - Hero section with compelling headline, CTAs, and feature highlights
+  - Footer component with company info, links, and contact details
+  - Updated main page to integrate all components
+- **Features Implemented**:
+  - Mobile-first responsive design using Tailwind CSS
+  - Radio Canada Big font throughout as per project requirements
+  - Professional blue color scheme with gradients
+  - Sticky header navigation with hamburger menu for mobile
+  - Hero section with trust indicators and call-to-action buttons
+  - Comprehensive footer with social links and contact information
+- **Status**: SUCCESSFUL
+- **Technical Details**: Used Next.js 14 App Router patterns with modular component architecture
+
+### [2024-12-29] Logo Integration
+- **Task**: Replace text-based branding with actual logo image from public folder
+- **Implementation**:
+  - Updated Header component to use logo.avif image with proper sizing and responsiveness
+  - Updated Footer component to use the same logo with white treatment for dark background
+  - Added Next.js Image component with optimization and priority loading
+  - Configured responsive sizing (h-8 on mobile, h-10 on larger screens)
+- **Technical Details**:
+  - Used Next.js Image component for performance optimization
+  - Applied responsive classes for different screen sizes
+  - Added brightness-0 invert filter for footer logo on dark background
+  - Set proper alt text for accessibility
+- **Status**: SUCCESSFUL
+- **Files Modified**: Header.tsx, Footer.tsx
+
+### [2024-12-29] Hero Carousel Implementation
+- **Task**: Create modern, clean carousel using hero images from Hero folder
+- **Implementation**:
+  - Replaced static gradient background with dynamic image carousel
+  - Added automated rotation every 5 seconds with smooth fade transitions
+  - Implemented manual navigation with clickable indicators
+  - Updated content to reflect structural engineering expertise (49 years)
+  - Added service tags (Engineering, Cost Consultants, BIM)
+  - Redesigned with full-screen hero layout and dark overlay for text readability
+  - Added modern glass-morphism effects with backdrop blur
+  - Included scroll indicator and enhanced hover animations
+- **Images Used**: 8 hero images from /Hero/ folder (hero1-8.avif, herp3.avif)
+- **Features**:
+  - Borderless, clean modern design as requested
+  - Responsive layout that works on all devices
+  - Smooth transitions with opacity and transform effects
+  - Professional typography over carousel
+  - Interactive carousel indicators
+  - Auto-rotation with manual override capability
+- **Status**: SUCCESSFUL
+- **Technical Details**: Used React hooks (useState, useEffect) for carousel state management and Next.js Image component for optimization
+- **Additional Components**: Created Features section to maintain key company strengths content
+- **Files Modified**: Hero.tsx (complete redesign), Features.tsx (new), page.tsx (updated imports and layout)
+
+=== LOG ENTRY 6 ===
+Date: 2024-12-28
+Action: Fixed carousel indicator visibility and positioning
+Status: SUCCESS
+Details:
+- Adjusted carousel indicators from bottom-8 to bottom-16 for better visibility
+- Increased z-index from z-20 to z-30 to ensure proper layering
+- Enhanced indicator size from 3x3 to 4x4 for better visibility
+- Added border styling and improved hover effects
+- Increased spacing between indicators for better user experience
+- Fixed alignment issue where dots were not visible when at the top of the page
+Files Modified: src/components/Hero.tsx
+Technical Notes: Positioning adjusted to work with solid white header background
+Reason: User reported inability to see carousel dots when at the top of the page
+
+=== LOG ENTRY 7 ===
+Date: 2024-12-28
+Action: Updated Footer with SACPL company information
+Status: SUCCESS
+Details:
+- Replaced generic footer content with actual SHANGHVI & ASSOCIATES CONSULTANTS PVT LTD information
+- Added complete company name and branding with centered layout
+- Implemented three office locations grid: Cochin, Mumbai HQ, and Indore
+- Added detailed addresses for all three offices
+- Included GST information for Mumbai office (GST: 27AALCS3411K1Z7)
+- Added clickable GST certificate download link
+- Updated company tagline to "49 Years of Excellence in Structural Engineering Design"
+- Maintained responsive design with proper mobile adaptations
+- Updated copyright to reflect actual company name
+- Enhanced visual hierarchy with blue accent colors for office headings
+- Preserved social media links and contact section structure
+Files Modified: src/components/Footer.tsx
+Technical Notes: Complete footer redesign focusing on three office locations with professional layout
+Reason: User provided actual company information to replace placeholder content
+
+=== LOG ENTRY 8 ===
+Date: 2024-12-29
+Action: Enhanced Footer Typography and GST Certificate Link
+Status: SUCCESS
+Details:
+- Increased office heading font size from text-xl to text-3xl for better visual hierarchy
+- Enhanced typography for Cochin Office, Mumbai HQ, and Indore Office headings
+- Updated GST certificate download link to actual URL (https://www.sacpl.co/_files/ugd/865611_b627109b18b1412690e3881dd0bff5db.pdf)
+- Added proper security attributes to external link (target="_blank", rel="noopener noreferrer")
+- Improved user experience with direct access to official GST certificate
+- Maintained consistent blue accent color scheme (#3B82F6) for office headings
+Files Modified: src/components/Footer.tsx
+Technical Notes: Typography enhancement focused on office section headers and secure external linking
+Reason: User requested footer updates for better visual prominence and functional GST certificate access
+
+=== LOG ENTRY 9 ===
+Date: 2024-12-29
+Action: Created and Integrated Stats Component
+Status: SUCCESS
+Details:
+- Created new Stats component (src/components/Stats.tsx) displaying company achievements
+- Implemented responsive grid layout (4 columns desktop, 2x2 tablet, 1 column mobile)
+- Added four key metrics: Year Established (1974), Projects Completed (10,000+), Team Strength (150+), World Records (4)
+- Used dark teal background (bg-teal-800) matching company branding
+- Integrated hover animations with scale transform effects
+- Added descriptive labels for each statistic with proper typography hierarchy
+- Positioned component between Hero and Features sections in main page layout
+- Included comprehensive comments throughout for code maintainability
+- Added tagline "Building Excellence Since 1974" with subtle border separator
+- Fully responsive design with appropriate font sizing for all screen sizes
+Files Created: src/components/Stats.tsx
+Files Modified: src/app/page.tsx (added import and component placement)
+Technical Notes: Used Tailwind CSS grid system, transform animations, and teal color palette for professional appearance
+Reason: User requested stats/achievements banner component to showcase company milestones after carousel
+
+## Failed Attempts:
+
+### None recorded yet
+
+## Notes:
+- All changes made according to project rules and specifications
+- Radio Canada Big font properly configured with weights: 400, 500, 600, 700
+- Hydration mismatch error should now be resolved
+- Footer now contains complete SACPL company information with enhanced typography
+- All external links properly secured with appropriate attributes
