@@ -132,7 +132,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4">
 
             {/* Primary CTA Button */}
-            <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 focus:outline-none hover:ring-2 hover:ring-white-400 focus:ring-offset-2 focus:ring-offset-transparent backdrop-blur-sm">
+            <button className="px-8 py-4 bg-[#142c67] hover:bg-[#142c67]/80 text-white font-semibold text-lg rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 focus:outline-none hover:ring-2 hover:ring-white-400 focus:ring-offset-2 focus:ring-offset-transparent backdrop-blur-sm">
               Start Your Project
             </button>
 
