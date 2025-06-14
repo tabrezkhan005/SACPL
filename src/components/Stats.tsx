@@ -162,31 +162,25 @@ const Stats = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Trigger animation when 50% of component is visible
           if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             setIsVisible(true);
-            // Stop observing once animation is triggered
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        // Trigger when 50% of the component is visible
         threshold: 0.5,
-        // Add some margin to trigger slightly before component is fully visible
         rootMargin: '0px 0px -50px 0px'
       }
     );
-
-    // Start observing the stats container
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
+    // Copy ref to variable for cleanup
+    const refCurrent = statsRef.current;
+    if (refCurrent) {
+      observer.observe(refCurrent);
     }
-
-    // Cleanup observer on component unmount
     return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
+      if (refCurrent) {
+        observer.unobserve(refCurrent);
       }
     };
   }, []);

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import DottedMap from "dotted-map";
 import { useTheme } from "next-themes";
+import Image from 'next/image';
 
 interface MapProps {
   dots?: Array<{
@@ -56,13 +57,14 @@ export default function WorldMap({
     // Full-width, responsive map container with correct overlay
     <div className="relative w-full aspect-[2/1] font-sans">
       {/* Render the SVG map as a background image */}
-      <img
+      <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="w-full h-full block"
         alt="world map"
-        height="495"
-        width="1056"
+        width={1056}
+        height={495}
         draggable={false}
+        priority
       />
       {/* Overlay animated SVG paths and points - absolutely positioned on top of the image */}
       <svg

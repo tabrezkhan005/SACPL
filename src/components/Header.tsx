@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { LogIn, User } from "lucide-react";
+import { User } from "lucide-react";
 
 /**
  * Header Component

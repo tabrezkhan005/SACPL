@@ -62,8 +62,8 @@ export const FollowPointer = ({
   y,
   title,
 }: {
-  x: any;
-  y: any;
+  x: import('framer-motion').MotionValue<number>;
+  y: import('framer-motion').MotionValue<number>;
   title?: string | React.ReactNode;
 }) => {
   const colors = [

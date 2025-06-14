@@ -3,11 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Building2, Users, Award, Calendar, MapPin, Phone, Mail, Camera, Star, Briefcase, GraduationCap, Trophy, ImageIcon, PencilRuler } from 'lucide-react';
+import { Building2, Users, Award, Calendar, MapPin, Star, Briefcase, GraduationCap, Trophy, ImageIcon, PencilRuler } from 'lucide-react';
 import TimelineDemo from "@/components/ui/timeline-demo";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { FlipWords } from "@/components/ui/flip-words";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 
@@ -20,64 +19,6 @@ import { FollowerPointerCard } from "@/components/ui/following-pointer";
  */
 const AboutPage = () => {
   const [activeTab, setActiveTab] = useState('timeline');
-
-  // Timeline data - you can replace with your actual content
-  const timelineData = [
-    { year: '2024', title: 'Expansion Phase', description: 'Expanded operations to multiple cities with 50+ ongoing projects' },
-    { year: '2022', title: 'Major Milestone', description: 'Completed 100+ residential and commercial projects' },
-    { year: '2020', title: 'Digital Transformation', description: 'Adopted latest construction technologies and project management systems' },
-    { year: '2018', title: 'Quality Certification', description: 'Achieved ISO 9001:2015 certification for quality management' },
-    { year: '2015', title: 'Foundation', description: 'SACPL was established with a vision to transform construction industry' }
-  ];
-
-  // Top Management data
-  const topManagement = [
-    { name: 'Suresh Shanghvi', role: 'Chairman & Managing Director', description: 'Suresh Shanghvi leads the company with a visionary approach and decades of industry experience.', image: '/images/team/suresh-shanghvi.jpg' },
-    { name: 'Biju Nair', role: 'Technical Director', description: 'Biju Nair leads our technical operations with innovative solutions.', image: '/Leaders/bijuN.png' },
-    { name: 'Priya Patel', role: 'Chief Financial Officer', description: 'Priya Patel ensures financial stability and strategic investment decisions for sustainable growth.', image: '/images/team/priya-patel.jpg' },
-    { name: 'Amit Sharma', role: 'Chief Operations Officer', description: 'Amit Sharma oversees all operational activities ensuring quality and timely project delivery.', image: '/images/team/amit-sharma.jpg' },
-    { name: 'Dr. Meera Singh', role: 'Head of Engineering', description: 'Dr. Meera Singh leads technical innovation and engineering excellence across all projects.', image: '/images/team/meera-singh.jpg' },
-    { name: 'Vikram Joshi', role: 'Head of Business Development', description: 'Vikram Joshi drives business expansion and maintains key client relationships.', image: '/images/team/vikram-joshi.jpg' },
-    { name: 'Kavita Reddy', role: 'Head of Human Resources', description: 'Kavita Reddy builds strong teams and fosters a culture of excellence and innovation.', image: '/images/team/kavita-reddy.jpg' },
-    { name: 'Arjun Gupta', role: 'Head of Quality Assurance', description: 'Arjun Gupta ensures the highest standards of quality in all construction projects.', image: '/images/team/arjun-gupta.jpg' },
-    { name: 'Neha Agarwal', role: 'Head of Design', description: 'Neha Agarwal leads architectural design and creates innovative solutions for modern living.', image: '/images/team/neha-agarwal.jpg' },
-    { name: 'Ravi Malhotra', role: 'Head of Project Management', description: 'Ravi Malhotra ensures efficient project execution and timely completion of all undertakings.', image: '/images/team/ravi-malhotra.jpg' }
-  ];
-
-  // Expert Engineers data
-  const expertEngineers = [
-    { name: 'Rohit Verma', role: 'Senior Structural Engineer', description: 'Expert in structural design with 15+ years of experience in complex projects.', image: '/images/engineers/rohit-verma.jpg' },
-    { name: 'Sneha Krishnan', role: 'Senior Civil Engineer', description: 'Specialist in civil engineering with expertise in infrastructure development.', image: '/images/engineers/sneha-krishnan.jpg' },
-    { name: 'Manoj Tiwari', role: 'Senior Mechanical Engineer', description: 'Expert in MEP systems and sustainable building technologies.', image: '/images/engineers/manoj-tiwari.jpg' },
-    { name: 'Deepika Nair', role: 'Senior Electrical Engineer', description: 'Specialist in electrical systems and smart building automation.', image: '/images/engineers/deepika-nair.jpg' },
-    { name: 'Kiran Jain', role: 'Senior Site Engineer', description: 'Expert in site management and construction quality control.', image: '/images/engineers/kiran-jain.jpg' },
-    { name: 'Sanjay Yadav', role: 'Senior Safety Engineer', description: 'Specialist in construction safety and risk management protocols.', image: '/images/engineers/sanjay-yadav.jpg' },
-    { name: 'Pooja Sharma', role: 'Senior Environmental Engineer', description: 'Expert in sustainable construction and environmental compliance.', image: '/images/engineers/pooja-sharma.jpg' },
-    { name: 'Ashish Kumar', role: 'Senior Geotechnical Engineer', description: 'Specialist in soil analysis and foundation engineering solutions.', image: '/images/engineers/ashish-kumar.jpg' },
-    { name: 'Sunita Rao', role: 'Senior Transportation Engineer', description: 'Expert in transportation infrastructure and traffic management systems.', image: '/images/engineers/sunita-rao.jpg' },
-    { name: 'Raman Singh', role: 'Senior Water Resources Engineer', description: 'Specialist in water management and hydraulic engineering projects.', image: '/images/engineers/raman-singh.jpg' },
-    { name: 'Nisha Pandey', role: 'Senior Materials Engineer', description: 'Expert in construction materials and quality testing procedures.', image: '/images/engineers/nisha-pandey.jpg' },
-    { name: 'Gaurav Mehta', role: 'Senior Cost Engineer', description: 'Specialist in project estimation and cost optimization strategies.', image: '/images/engineers/gaurav-mehta.jpg' },
-    { name: 'Anita Desai', role: 'Senior Planning Engineer', description: 'Expert in project planning and construction scheduling methodologies.', image: '/images/engineers/anita-desai.jpg' },
-    { name: 'Vivek Agarwal', role: 'Senior Quality Engineer', description: 'Specialist in quality assurance and construction standards compliance.', image: '/images/engineers/vivek-agarwal.jpg' },
-    { name: 'Preeti Joshi', role: 'Senior BIM Engineer', description: 'Expert in Building Information Modeling and digital construction technologies.', image: '/images/engineers/preeti-joshi.jpg' }
-  ];
-
-  // Services data
-  const services = [
-    { title: 'Residential Construction', description: 'Premium residential projects including luxury apartments, villas, and gated communities with modern amenities.', icon: <Building2 className="w-8 h-8" /> },
-    { title: 'Commercial Development', description: 'State-of-the-art commercial complexes, office buildings, and retail spaces designed for modern business needs.', icon: <Briefcase className="w-8 h-8" /> },
-    { title: 'Infrastructure Projects', description: 'Large-scale infrastructure development including roads, bridges, and public utilities with cutting-edge technology.', icon: <MapPin className="w-8 h-8" /> },
-    { title: 'Industrial Construction', description: 'Specialized industrial facilities, warehouses, and manufacturing plants built to industry standards.', icon: <GraduationCap className="w-8 h-8" /> }
-  ];
-
-  // Achievements data
-  const achievements = [
-    { title: 'Projects Completed', count: '150+', icon: <Building2 className="w-8 h-8" /> },
-    { title: 'Years of Excellence', count: '10+', icon: <Calendar className="w-8 h-8" /> },
-    { title: 'Happy Clients', count: '500+', icon: <Users className="w-8 h-8" /> },
-    { title: 'Awards Won', count: '25+', icon: <Trophy className="w-8 h-8" /> }
-  ];
 
   const taglines = [
     "Building Tomorrow's Landmarks Today. We are pioneers in construction excellence, creating sustainable and innovative structures that shape the future.",
@@ -99,7 +40,7 @@ const AboutPage = () => {
       setTaglineIndex((prev) => (prev + 1) % taglines.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [taglines.length]);
 
   // Leadership data (add at the top or import from a data file)
   const leadershipData = [
@@ -415,9 +356,12 @@ const AboutPage = () => {
                     rel="noopener noreferrer"
                     className="block group"
                   >
-                    <img
+                    <Image
                       src="/founder.png"
                       alt="Mr. Suresh P Shanghvi"
+                      width={224}
+                      height={224}
+                      priority
                       className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-blue-200 shadow-lg object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
                     />
                   </a>
@@ -471,9 +415,12 @@ const AboutPage = () => {
                   transition={{ duration: 0.6, delay: idx * 0.12, type: 'spring', bounce: 0.2 }}
                   className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 flex flex-col items-center text-center border border-zinc-100 hover:shadow-2xl transition-all duration-300 min-h-[370px]"
                 >
-                  <img
+                  <Image
                     src={leader.image}
                     alt={leader.name}
+                    width={128}
+                    height={128}
+                    priority
                     className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-200 mb-6 shadow-lg"
                   />
                   <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 font-radio-canada-big mb-1">{leader.name}</h3>
@@ -491,9 +438,12 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: 9 * 0.12, type: 'spring', bounce: 0.2 }}
                 className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 flex flex-col items-center text-center border border-zinc-100 hover:shadow-2xl transition-all duration-300 w-full max-w-md min-h-[370px]"
               >
-                <img
+                <Image
                   src={leadershipData[9].image}
                   alt={leadershipData[9].name}
+                  width={128}
+                  height={128}
+                  priority
                   className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-200 mb-6 shadow-lg"
                 />
                 <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 font-radio-canada-big mb-1">{leadershipData[9].name}</h3>

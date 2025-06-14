@@ -27,7 +27,7 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   // State to track which card is currently being hovered
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Icon color combinations for each card
   const iconColors = [

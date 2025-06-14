@@ -199,13 +199,13 @@ const ShaderMaterial = ({
     }
     lastFrameTime = timestamp;
 
-    const material: any = ref.current.material;
+    const material: THREE.ShaderMaterial = ref.current.material as THREE.ShaderMaterial;
     const timeLocation = material.uniforms.u_time;
     timeLocation.value = timestamp;
   });
 
   const getUniforms = () => {
-    const preparedUniforms: any = {};
+    const preparedUniforms: Uniforms = {};
 
     for (const uniformName in uniforms) {
       const uniform: any = uniforms[uniformName];
@@ -275,7 +275,7 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [size.width, size.height, source]);
+  }, [size.width, size.height, source, getUniforms]);
 
   return (
     <mesh ref={ref as any}>

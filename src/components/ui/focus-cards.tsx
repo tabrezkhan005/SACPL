@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from 'next/image';
 
 // Card component for individual project cards
 export const Card = React.memo(
@@ -25,10 +26,12 @@ export const Card = React.memo(
       )}
     >
       {/* Project image */}
-      <img
+      <Image
         src={card.src}
         alt={card.title}
         className="object-cover absolute inset-0 w-full h-full"
+        fill
+        priority
       />
       {/* Overlay with project title on hover */}
       <div
