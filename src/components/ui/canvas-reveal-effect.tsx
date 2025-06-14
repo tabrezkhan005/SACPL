@@ -243,7 +243,8 @@ const ShaderMaterial = ({
       }
       preparedUniforms["u_time"] = { value: 0, type: "1f" };
       preparedUniforms["u_resolution"] = {
-        value: new THREE.Vector2(size.width * 2, size.height * 2),
+        value: [size.width * 2, size.height * 2],
+        type: "2f",
       };
       return preparedUniforms;
     };
