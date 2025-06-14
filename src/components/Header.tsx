@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { LogIn, User } from "lucide-react";
 
 /**
  * Header Component
@@ -17,6 +18,17 @@ import Image from "next/image";
 export default function Header() {
   // State management for mobile menu toggle
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // State for glass effect on scroll
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Track scroll position to toggle glassmorphism
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   /**
    * Toggle mobile menu visibility
@@ -27,7 +39,15 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+    <header
+      className={
+        `sticky top-0 z-50 border-b transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/60 backdrop-blur-md shadow-lg border-gray-200"
+            : "bg-white shadow-sm border-gray-100"
+        }`
+      }
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
@@ -59,7 +79,7 @@ export default function Header() {
                 Home
               </a>
               <a
-                href="#about"
+                href="/about"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
               >
                 About
@@ -70,6 +90,20 @@ export default function Header() {
               >
                 Services
               </a>
+              {/* New Projects Link */}
+              <a
+                href="#projects"
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+              >
+                Projects
+              </a>
+              {/* New Clients Link */}
+              <a
+                href="#clients"
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+              >
+                Clients
+              </a>
               <a
                 href="#contact"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
@@ -79,14 +113,16 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Call-to-Action Button and Mobile Menu Button */}
+          {/* Call-to-Action Button, Profile Icon, and Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-
-            {/* CTA Button - Hidden on mobile */}
-            <button className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-[#142c67] hover:bg-[#142c67]/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#142c67] transition-colors duration-200">
-              Get Started
-            </button>
-
+            {/* Profile Icon Button - Desktop */}
+            <a
+              href="/login"
+              className="inline-flex items-center justify-center p-2 rounded-full text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+              aria-label="Profile"
+            >
+              <User className="w-6 h-6" />
+            </a>
             {/* Mobile Menu Toggle Button */}
             <div className="md:hidden">
               <button
@@ -138,7 +174,7 @@ export default function Header() {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/80 backdrop-blur-md border-t border-gray-100">
               {/* Mobile Navigation Links */}
               <a
                 href="#home"
@@ -148,7 +184,7 @@ export default function Header() {
                 Home
               </a>
               <a
-                href="#about"
+                href="/about"
                 className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
                 onClick={toggleMobileMenu}
               >
@@ -161,6 +197,22 @@ export default function Header() {
               >
                 Services
               </a>
+              {/* New Projects Link */}
+              <a
+                href="#projects"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
+                onClick={toggleMobileMenu}
+              >
+                Projects
+              </a>
+              {/* New Clients Link */}
+              <a
+                href="#clients"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
+                onClick={toggleMobileMenu}
+              >
+                Clients
+              </a>
               <a
                 href="#contact"
                 className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
@@ -168,12 +220,15 @@ export default function Header() {
               >
                 Contact
               </a>
-
-              {/* Mobile CTA Button */}
-              <div className="pt-4 pb-2">
-                <button className="w-full flex justify-center items-center px-4 py-2 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
-                  Get Started
-                </button>
+              {/* Profile Icon - Mobile */}
+              <div className="pt-4 pb-2 flex gap-2">
+                <a
+                  href="/login"
+                  className="flex items-center justify-center p-2 rounded-full text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 w-full"
+                  aria-label="Profile"
+                >
+                  <User className="w-6 h-6" />
+                </a>
               </div>
             </div>
           </div>

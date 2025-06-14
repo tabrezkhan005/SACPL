@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import * as Tooltip from '@radix-ui/react-tooltip';
+import { Briefcase, CheckCircle2, Users, Award } from 'lucide-react';
 
 /**
  * Animated Counter Component - Individual counter with flip clock animation
@@ -120,7 +122,9 @@ const Stats = () => {
       label: "Year Established",
       description: "Foundation of Excellence",
       duration: 2000, // 2 seconds
-      formatAsYear: true
+      formatAsYear: true,
+      icon: <Briefcase className="w-8 h-8 text-blue-400" />,
+      accent: "from-blue-500/30 to-blue-800/30"
     },
     {
       id: 2,
@@ -128,7 +132,9 @@ const Stats = () => {
       label: "Projects Completed",
       description: "Successful Deliveries",
       duration: 3000, // 3 seconds
-      suffix: "+"
+      suffix: "+",
+      icon: <CheckCircle2 className="w-8 h-8 text-green-400" />,
+      accent: "from-green-500/30 to-green-800/30"
     },
     {
       id: 3,
@@ -136,14 +142,18 @@ const Stats = () => {
       label: "Team Strength",
       description: "Expert Professionals",
       duration: 2500, // 2.5 seconds
-      suffix: "+"
+      suffix: "+",
+      icon: <Users className="w-8 h-8 text-purple-400" />,
+      accent: "from-purple-500/30 to-purple-800/30"
     },
     {
       id: 4,
       targetValue: 4,
       label: "World Records",
       description: "Engineering Achievements",
-      duration: 1500 // 1.5 seconds
+      duration: 1500, // 1.5 seconds
+      icon: <Award className="w-8 h-8 text-yellow-400" />,
+      accent: "from-yellow-400/30 to-yellow-800/30"
     }
   ];
 
@@ -182,60 +192,63 @@ const Stats = () => {
   }, []);
 
   return (
-    <div
-      ref={statsRef}
-      className="bg-teal-800 py-16 px-4 sm:px-6 lg:px-8"
-    >
-      {/* Container for centering and max width */}
-      <div className="max-w-7xl mx-auto">
-        {/* Stats Grid - Responsive layout with staggered animation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {statsData.map((stat, index) => (
-            <div
-              key={stat.id}
-              className="text-center transform transition-all duration-500 hover:scale-105"
-              style={{
-                // Stagger the animation start for each stat
-                animationDelay: `${index * 200}ms`
-              }}
-            >
-              {/* Animated Counter Component */}
-              <AnimatedCounter
-                targetValue={stat.targetValue}
-                isVisible={isVisible}
-                duration={stat.duration}
-                suffix={stat.suffix}
-                formatAsYear={stat.formatAsYear}
-              />
-
-              {/* Primary Label */}
-              <div className="text-lg sm:text-xl lg:text-2xl font-semibold text-teal-100 mb-1">
-                {stat.label}
-              </div>
-
-              {/* Secondary Description */}
-              <div className="text-sm sm:text-base text-teal-200 opacity-90">
-                {stat.description}
-              </div>
-            </div>
-          ))}
+    <Tooltip.Provider>
+      <section
+        ref={statsRef}
+        className="relative py-20 bg-gradient-to-b from-[#232946] via-[#142c67] to-[#1a237e] overflow-hidden"
+      >
+        {/* Glassmorphism background overlay */}
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 z-10">
+          {/* Main Heading */}
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-radio-canada-big mb-4 text-white">
+              Our Achievements
+            </h2>
+            <p className="text-lg md:text-xl text-blue-100 font-medium mb-10">
+              Celebrating decades of excellence, innovation, and record-breaking success in structural engineering.
+            </p>
+          </div>
+          {/* Stats Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {statsData.map((stat, index) => (
+              <Tooltip.Root key={stat.id} delayDuration={200}>
+                <Tooltip.Trigger asChild>
+                  <div
+                    className={`group text-center rounded-2xl bg-gradient-to-br ${stat.accent} shadow-xl border border-white/20 p-8 transition-all duration-300 hover:scale-105 hover:shadow-2xl backdrop-blur-md cursor-pointer`}
+                  >
+                    <div className="flex justify-center mb-4">
+                      {stat.icon}
+                    </div>
+                    <AnimatedCounter
+                      targetValue={stat.targetValue}
+                      isVisible={isVisible}
+                      duration={stat.duration}
+                      suffix={stat.suffix}
+                      formatAsYear={stat.formatAsYear}
+                    />
+                    <div className="text-lg sm:text-xl lg:text-2xl font-semibold text-white mb-1 drop-shadow">
+                      {stat.label}
+                    </div>
+                    <div className="text-sm sm:text-base text-blue-100 opacity-90">
+                      {stat.description}
+                    </div>
+                  </div>
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content side="top" align="center" className="z-50 px-4 py-2 rounded-lg bg-black/80 text-white text-sm shadow-lg border border-white/10">
+                    {stat.label}: {stat.description}
+                    <Tooltip.Arrow className="fill-black/80" />
+                  </Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
+            ))}
+          </div>
+          {/* Animated separator line that appears after counters */}
+          <div className="h-1 w-32 bg-gradient-to-r from-blue-400 via-teal-400 to-green-400 rounded-full mx-auto mt-12 animate-pulse" />
         </div>
-
-        {/* Animated separator line that appears after counters */}
-        <div
-          className={`mt-12 pt-8 border-t border-teal-700/50 text-center transition-all duration-1000 ${
-            isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-          }`}
-          style={{
-            transitionDelay: '3000ms' // Appear after counters finish
-          }}
-        >
-          <p className="text-teal-200 text-lg font-medium">
-            Building Excellence Since 1974
-          </p>
-        </div>
-      </div>
-    </div>
+      </section>
+    </Tooltip.Provider>
   );
 };
 

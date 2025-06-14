@@ -69,30 +69,23 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-radio-canada-big mb-4">
+    <section className="w-full py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Main Heading */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-extrabold font-radio-canada-big mb-4 text-gray-900">
             Why Choose SACPL
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-500 font-medium mb-10">
             With nearly five decades of experience, we bring unmatched expertise
             and innovation to every structural engineering project.
           </p>
         </div>
-
-        {/* Interactive Features Cards with Hover Effects */}
-        <div className="max-w-5xl mx-auto">
-          <HoverEffect items={sacplFeatures} />
-        </div>
-
-        {/* Call-to-Action */}
-        <div className="text-center mt-16">
-          <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Learn More About Our Services
-          </button>
+        {/* Features Cards Grid */}
+        <div className="w-full flex justify-center">
+          <div className="w-full">
+            <HoverEffect items={sacplFeatures} />
+          </div>
         </div>
       </div>
     </section>

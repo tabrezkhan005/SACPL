@@ -15,7 +15,7 @@ import Image from "next/image";
  */
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-b from-[#232946] via-[#142c67] to-[#1a237e] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
 
         {/* Company Header Section */}
