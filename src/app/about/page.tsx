@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Building2, Users, Award, Calendar, MapPin, Star, Briefcase, GraduationCap, Trophy, ImageIcon, PencilRuler } from 'lucide-react';
+import { Building2, Users, Award, Calendar, Star, Briefcase, GraduationCap, Trophy, ImageIcon, PencilRuler } from 'lucide-react';
 import TimelineDemo from "@/components/ui/timeline-demo";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
@@ -160,7 +160,7 @@ const AboutPage = () => {
                 { id: 'engineers', label: 'Expert Team', icon: <GraduationCap className="w-4 h-4" /> },
                 { id: 'achievements', label: 'Achievements', icon: <Trophy className="w-4 h-4" /> },
                 { id: 'gallery', label: 'Gallery', icon: <ImageIcon className="w-4 h-4" /> }
-              ].map((tab, idx) => {
+              ].map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <motion.button
@@ -406,13 +406,13 @@ const AboutPage = () => {
             </h2>
             {/* Leadership Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
-              {leadershipData.slice(0, 9).map((leader, idx) => (
+              {leadershipData.slice(0, 9).map((leader) => (
                 <motion.div
                   key={leader.name}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.12, type: 'spring', bounce: 0.2 }}
+                  transition={{ duration: 0.6, delay: 0.12, type: 'spring', bounce: 0.2 }}
                   className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 flex flex-col items-center text-center border border-zinc-100 hover:shadow-2xl transition-all duration-300 min-h-[370px]"
                 >
                   <Image

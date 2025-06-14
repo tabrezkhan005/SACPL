@@ -205,7 +205,7 @@ const Stats = () => {
           </div>
           {/* Stats Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {statsData.map((stat, index) => (
+            {statsData.map((stat) => (
               <Tooltip.Root key={stat.id} delayDuration={200}>
                 <Tooltip.Trigger asChild>
                   <div
