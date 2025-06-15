@@ -261,7 +261,7 @@ const Particles: React.FC<ParticlesProps> = ({
       }
     });
     window.requestAnimationFrame(animate);
-  }, [circles.current, vx, vy, ease, staticity, drawCircle, circleParams]);
+  }, [vx, vy, ease, staticity, drawCircle, circleParams]);
 
   useEffect(() => {
     animate();
