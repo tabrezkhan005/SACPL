@@ -117,7 +117,7 @@ const HeroSection = () => {
           className="text-lg md:text-xl text-black max-w-3xl mx-auto leading-relaxed"
         >
           We partner with industry leaders and innovative startups to deliver exceptional results.
-          Discover how we've helped transform businesses across the globe.
+          Discover how we&apos;ve helped transform businesses across the globe.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
