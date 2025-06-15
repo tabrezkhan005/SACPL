@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { FlipWords } from "@/components/ui/flip-words";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
+import ModernCTA from '@/components/ModernCTA';
 
 /**
  * About Us Page
@@ -106,6 +107,49 @@ const AboutPage = () => {
     },
   ];
 
+  // Expert Engineers data (updated with user-provided images from /public/people/)
+  const expertEngineers = [
+    { name: "Sadaf Quadri", title: "Sr. Lead Engineer: Design", description: "", image: "/people/sadaf.avif" },
+    { name: "Jitesh Patel", title: "Principal Engineer", description: "", image: "/people/jitesh.avif" },
+    { name: "Prashant Chorghe", title: "General Manager: Design", description: "", image: "/people/prashant.avif" },
+    { name: "Keshav Godkar", title: "Principal Designer: Design", description: "", image: "/people/keshav.avif" },
+    { name: "Digvi Doshi", title: "Head, Billing & Tendering", description: "", image: "/people/digvi.avif" },
+    { name: "Sagar Marathe", title: "Sr. Engineer: Design", description: "", image: "/people/sagar.avif" },
+    { name: "Ajinkya Patil", title: "Sr. Engineer: Detailing", description: "", image: "/people/ajinkya.avif" },
+    { name: "Ghanshyam Bhavsar", title: "Sr. Engineer: QC Design", description: "", image: "/people/bhavsar.avif" },
+    { name: "Mangesh Chorghe", title: "Lead Design Engineer", description: "", image: "/people/mangesh.avif" },
+    { name: "Sanjay Chavan", title: "Lead Designer: Design", description: "", image: "/people/sanjay.avif" },
+    { name: "Arjun Walawalkar", title: "Sr. QAQC: Design Engineer", description: "", image: "/people/arjun.avif" },
+    { name: "Pranit Khelurkar", title: "Lead Engineer: Design", description: "", image: "/people/pranit.avif" },
+    { name: "Kaushal Mhatre", title: "Senior Technical Assistant", description: "", image: "/people/kaushal.avif" },
+    { name: "Mohammad Aarif Nawaaz", title: "Project Coordinator: Design", description: "", image: "/people/aarif.avif" },
+    { name: "Suhas Jaitapkar", title: "Design Engineer", description: "", image: "/people/suhas.avif" },
+  ];
+
+  // Achievements data
+  const achievements = [
+    {
+      year: "2005",
+      title: "First National Award",
+      description: "Received our first national recognition for innovative engineering design.",
+    },
+    {
+      year: "2010",
+      title: "Milestone Project",
+      description: "Completed a landmark project that reshaped urban architecture.",
+    },
+    {
+      year: "2018",
+      title: "Global Recognition",
+      description: "Earned international acclaim for excellence in sustainable design.",
+    },
+    {
+      year: "2022",
+      title: "Innovation Award",
+      description: "Awarded for pioneering advancements in structural engineering technology.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex flex-col">
       <Header />
@@ -159,7 +203,6 @@ const AboutPage = () => {
                 { id: 'management', label: 'Leadership', icon: <Users className="w-4 h-4" /> },
                 { id: 'engineers', label: 'Expert Team', icon: <GraduationCap className="w-4 h-4" /> },
                 { id: 'achievements', label: 'Achievements', icon: <Trophy className="w-4 h-4" /> },
-                { id: 'gallery', label: 'Gallery', icon: <ImageIcon className="w-4 h-4" /> }
               ].map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -225,7 +268,7 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold font-radio-canada-big text-center text-blue-900 mb-12 tracking-tight">
               What We Do
             </h2>
-            {/* Cards Grid */}
+            {/* Cards Grid - Now 6 cards, each with CardSpotlight and CanvasRevealEffect */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-stretch">
               {/* Structural Engineering Card */}
               <CardSpotlight className="bg-white border-none shadow-xl">
@@ -253,27 +296,7 @@ const AboutPage = () => {
                   <Briefcase className="w-12 h-12 text-green-500 mb-4" />
                   <h3 className="text-2xl font-bold text-neutral-900 mb-2">Project Management</h3>
                   <p className="text-neutral-600 text-base font-medium">
-                    Our expert management ensures projects are delivered on time and exceed expectations.
-                  </p>
-                </div>
-              </CardSpotlight>
-              {/* Award-Winning Service Card */}
-              <CardSpotlight className="bg-white border-none shadow-xl">
-                <div className="flex flex-col items-center text-center">
-                  <Award className="w-12 h-12 text-yellow-500 mb-4" />
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">Award-Winning Service</h3>
-                  <p className="text-neutral-600 text-base font-medium">
-                    Recognized for excellence and innovation in every project we deliver.
-                  </p>
-                </div>
-              </CardSpotlight>
-              {/* Creative Solutions Card */}
-              <CardSpotlight className="bg-white border-none shadow-xl">
-                <div className="flex flex-col items-center text-center">
-                  <Star className="w-12 h-12 text-pink-500 mb-4" />
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">Creative Solutions</h3>
-                  <p className="text-neutral-600 text-base font-medium">
-                    We bring creativity and expertise to solve complex engineering challenges.
+                    Our experienced team ensures seamless execution and delivery of every project.
                   </p>
                 </div>
               </CardSpotlight>
@@ -287,32 +310,26 @@ const AboutPage = () => {
                   </p>
                 </div>
               </CardSpotlight>
+              {/* BIM & Digital Solutions Card */}
+              <CardSpotlight className="bg-white border-none shadow-xl">
+                <div className="flex flex-col items-center text-center">
+                  <Star className="w-12 h-12 text-pink-500 mb-4" />
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">BIM & Digital Solutions</h3>
+                  <p className="text-neutral-600 text-base font-medium">
+                    Advanced Building Information Modeling and digital engineering for streamlined workflows and 3D visualization.
+                  </p>
             </div>
-            {/* Call to Action Section */}
-            <div className="mt-16 flex flex-col items-center justify-center gap-8">
-              {/* Two-line CTA: FlipWords only in first line */}
-              <div className="text-4xl md:text-5xl font-extrabold text-center max-w-3xl">
-                <div className="flex flex-col items-center">
-                  <span className="text-black">
-                    Let us help you build{' '}
-                    <FlipWords
-                      words={[
-                        "iconic structures", "lasting value", "your vision", "modern spaces", "future landmarks", "award-winning projects", "creative solutions", "timely results", "sustainable growth", "engineering marvels", "your next success", "beautiful buildings", "innovative designs", "trusted partnerships", "excellence together"
-                      ]}
-                      duration={2200}
-                      className="text-black font-extrabold drop-shadow-md inline-block"
-                    />
-                  </span>
-                  <span className="text-black mt-2">for your business.</span>
+              </CardSpotlight>
+              {/* Quality Assurance & Compliance Card */}
+              <CardSpotlight className="bg-white border-none shadow-xl">
+                <div className="flex flex-col items-center text-center">
+                  <Award className="w-12 h-12 text-yellow-500 mb-4" />
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">Quality Assurance & Compliance</h3>
+                  <p className="text-neutral-600 text-base font-medium">
+                    Rigorous quality control and compliance with international standards for structural integrity and safety.
+                  </p>
                 </div>
-              </div>
-              {/* Contact Us Button - visually appealing, no shimmer */}
-              <button
-                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-gradient-to-r from-indigo-600 to-violet-700 text-white transition-transform duration-200 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-violet-300"
-                type="button"
-              >
-                Contact Us
-              </button>
+              </CardSpotlight>
             </div>
           </div>
         </section>
@@ -388,7 +405,7 @@ const AboutPage = () => {
               </div>
               {/* Contact Us Button - visually appealing, no shimmer */}
               <button
-                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-gradient-to-r from-indigo-600 to-violet-700 text-white transition-transform duration-200 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-violet-300"
+                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-blue-700 text-white transition-transform duration-200 hover:bg-blue-800 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-blue-300"
                 type="button"
               >
                 Contact Us
@@ -469,7 +486,7 @@ const AboutPage = () => {
                 </div>
               </div>
               <button
-                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-gradient-to-r from-indigo-600 to-violet-700 text-white transition-transform duration-200 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-violet-300"
+                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-blue-700 text-white transition-transform duration-200 hover:bg-blue-800 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-blue-300"
                 type="button"
               >
                 Contact Us
@@ -478,7 +495,173 @@ const AboutPage = () => {
           </div>
         </section>
       )}
-      {/* ... (repeat for all other tab sections: services, founder, management, engineers, achievements, gallery) ... */}
+      {/* Expert Team Section */}
+      {activeTab === 'engineers' && (
+        <section className="w-full py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold font-radio-canada-big text-center text-blue-900 mb-12 tracking-tight">
+              Our Expert Team
+            </h2>
+            {/* Expert Engineers Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
+              {expertEngineers.slice(0, 15).map((engineer) => (
+                <motion.div
+                  key={engineer.name}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.12, type: 'spring', bounce: 0.2 }}
+                  className="bg-white rounded-3xl shadow-2xl p-10 md:p-12 flex flex-col items-center text-center border border-zinc-100 hover:shadow-2xl transition-all duration-300 min-h-[370px]"
+                >
+                  <Image
+                    src={engineer.image}
+                    alt={engineer.name}
+                    width={128}
+                    height={128}
+                    priority
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-200 mb-6 shadow-lg"
+                  />
+                  <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 font-radio-canada-big mb-1">{engineer.name}</h3>
+                  <p className="text-blue-700 font-semibold mb-3 text-lg md:text-xl">{engineer.title}</p>
+                  <p className="text-neutral-600 text-base md:text-lg font-sans">{engineer.description}</p>
+                </motion.div>
+              ))}
+            </div>
+            {/* CTA Section reused */}
+            <div className="mt-16 flex flex-col items-center justify-center gap-8">
+              <div className="text-4xl md:text-5xl font-extrabold text-center max-w-3xl">
+                <div className="flex flex-col items-center">
+                  <span className="text-black">
+                    Let us help you build{' '}
+                    <FlipWords
+                      words={[
+                        "iconic structures", "lasting value", "your vision", "modern spaces", "future landmarks", "award-winning projects", "creative solutions", "timely results", "sustainable growth", "engineering marvels", "your next success", "beautiful buildings", "innovative designs", "trusted partnerships", "excellence together"
+                      ]}
+                      duration={2200}
+                      className="text-black font-extrabold drop-shadow-md inline-block"
+                    />
+                  </span>
+                  <span className="text-black mt-2">for your business.</span>
+                </div>
+              </div>
+              <button
+                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-blue-700 text-white transition-transform duration-200 hover:bg-blue-800 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-blue-300"
+                type="button"
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+      {/* Achievements Section */}
+      {activeTab === 'achievements' && (
+        <section className="w-full py-16 bg-gradient-to-br from-blue-50 via-white to-blue-100">
+          <div className="max-w-5xl mx-auto px-4 md:px-8 lg:px-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold font-radio-canada-big text-center text-blue-900 mb-12 tracking-tight">
+              Our Achievements
+            </h2>
+            {/* Enhanced Animated Achievements Cards Grid */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.18 } },
+                hidden: {},
+              }}
+            >
+              {achievements.map((ach, i) => (
+                <motion.div
+                  key={ach.year}
+                  variants={{
+                    hidden: { opacity: 0, y: 60, scale: 0.85 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', bounce: 0.35, duration: 0.8 } },
+                  }}
+                  whileHover={{ scale: 1.045, boxShadow: "0 8px 32px 0 rgba(60, 80, 200, 0.18)", zIndex: 2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center border border-blue-100 transition-all duration-300 min-h-[260px] overflow-hidden group cursor-pointer"
+                >
+                  {/* Animated, Rotating, Pulsing Gradient Ring */}
+                  <motion.div
+                    className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-tr from-blue-200 via-blue-400 to-violet-300 rounded-full blur-2xl opacity-60 z-0"
+                    animate={{ rotate: 360, scale: [0.85, 1.1, 0.85] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 7,
+                      ease: "linear",
+                      repeatType: "loop",
+                      scale: { duration: 2.5, repeat: Infinity, repeatType: "reverse" },
+                    }}
+                  />
+                  {/* Animated Year Badge with Pop-in and Pulse */}
+                  <motion.span
+                    className="relative z-10 text-4xl font-extrabold text-blue-700 mb-4 font-radio-canada-big drop-shadow-lg"
+                    initial={{ scale: 0.7, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18, delay: 0.2 + i * 0.18 }}
+                    whileHover={{ textShadow: "0 0 16px #60a5fa, 0 0 32px #a5b4fc" }}
+                  >
+                    {ach.year}
+                  </motion.span>
+                  {/* Title */}
+                  <motion.h3
+                    className="relative z-10 text-xl md:text-2xl font-bold text-neutral-900 mb-2 font-radio-canada-big"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + i * 0.18, duration: 0.5 }}
+                  >
+                    {ach.title}
+                  </motion.h3>
+                  {/* Description */}
+                  <motion.p
+                    className="relative z-10 text-neutral-600 text-base md:text-lg font-sans mb-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + i * 0.18, duration: 0.5 }}
+                  >
+                    {ach.description}
+                  </motion.p>
+                  {/* Animated Underline on Hover */}
+                  <motion.div
+                    className="relative z-10 w-16 h-1 bg-gradient-to-r from-blue-400 to-violet-400 rounded-full mt-2 group-hover:scale-x-110 transition-transform duration-300"
+                    initial={{ scaleX: 0.7, opacity: 0.7 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    whileHover={{ scaleX: 1.2, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+            {/* CTA Section reused */}
+            <div className="mt-16 flex flex-col items-center justify-center gap-8">
+              <div className="text-4xl md:text-5xl font-extrabold text-center max-w-3xl">
+                <div className="flex flex-col items-center">
+                  <span className="text-black">
+                    Let us help you build{' '}
+                    <FlipWords
+                      words={[
+                        "iconic structures", "lasting value", "your vision", "modern spaces", "future landmarks", "award-winning projects", "creative solutions", "timely results", "sustainable growth", "engineering marvels", "your next success", "beautiful buildings", "innovative designs", "trusted partnerships", "excellence together"
+                      ]}
+                      duration={2200}
+                      className="text-black font-extrabold drop-shadow-md inline-block"
+                    />
+                  </span>
+                  <span className="text-black mt-2">for your business.</span>
+                </div>
+              </div>
+              <button
+                className="mt-4 px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl bg-blue-700 text-white transition-transform duration-200 hover:bg-blue-800 hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-blue-300"
+                type="button"
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+      {/* Place ModernCTA above the footer, outside of tab logic */}
+      <ModernCTA theme="light" />
       <Footer />
     </div>
   );

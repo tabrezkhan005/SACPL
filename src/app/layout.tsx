@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Radio_Canada_Big } from "next/font/google";
+import { Radio_Canada_Big, Montserrat } from "next/font/google";
 import "./globals.css";
 
 // Configure Radio Canada Big font as specified in project rules
@@ -9,6 +9,14 @@ const radioCanadaBig = Radio_Canada_Big({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap", // Optimize font loading performance
+});
+
+// Configure Montserrat font for headings in the services section
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 // Metadata configuration for the company website
@@ -39,7 +47,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning={true}
-      className={radioCanadaBig.variable}
+      className={`${radioCanadaBig.variable} ${montserrat.variable}`}
     >
       <body
         className={`font-radio-canada-big antialiased`}

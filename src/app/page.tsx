@@ -6,6 +6,7 @@ import Stats from "@/components/Stats";
 import FocusCardsSection from "@/components/FocusCardsSection";
 import WorldMapSection from "@/components/WorldMapSection";
 import Footer from "@/components/Footer";
+import ModernCTA from '@/components/ModernCTA';
 
 /**
  * Home Page Component
@@ -19,7 +20,8 @@ import Footer from "@/components/Footer";
  * 5. Stats
  * 6. Focus Cards (Featured Projects)
  * 7. World Map
- * 8. Footer
+ * 8. Call To Action
+ * 9. Footer
  */
 export default function Home() {
   return (
@@ -41,6 +43,8 @@ export default function Home() {
         <FocusCardsSection />
         {/* World Map Section */}
         <WorldMapSection />
+        {/* Call To Action Section */}
+        <ModernCTA theme="light" />
       </main>
 
       {/* Footer - Company information and links */}
