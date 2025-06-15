@@ -40,10 +40,10 @@ export function GlowEffect({
   const BASE_TRANSITION = {
     repeat: Infinity,
     duration: duration,
-    ease: [0, 0, 1, 1],
+    ease: 'linear' as const,
   };
 
-  const animations = {
+  const animations: Record<NonNullable<GlowEffectProps['mode']>, any> = {
     rotate: {
       background: [
         `conic-gradient(from 0deg at 50% 50%, ${colors.join(', ')})`,
