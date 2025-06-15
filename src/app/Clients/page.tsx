@@ -126,12 +126,12 @@ const HeroSection = () => {
           className="flex justify-center gap-4 flex-wrap pt-4"
         >
           {/* Primary button: blue background, white text */}
-          <Button size="lg" className="group bg-blue-600 text-white hover:bg-blue-700">
+          <Button className="group bg-blue-600 text-white hover:bg-blue-700 px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
             View Our Work
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
           {/* Outline button: gray border, black text */}
-          <Button size="lg" variant="outline" className="border-gray-400 text-black hover:bg-gray-100">
+          <Button className="border-gray-400 text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
             Contact Us
           </Button>
         </motion.div>

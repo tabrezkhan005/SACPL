@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,147 +11,11 @@ import { Mail, MapPin, Phone, Building2, Clock } from "lucide-react";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernCTA from '@/components/ModernCTA';
+import { GlowEffect } from '@/components/GlowEffect';
 
 // Utility function for cn
 function cnUtil(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');
-}
-
-// GlowEffect Component
-export type GlowEffectProps = {
-  className?: string;
-  style?: React.CSSProperties;
-  colors?: string[];
-  mode?:
-    | 'rotate'
-    | 'pulse'
-    | 'breathe'
-    | 'colorShift'
-    | 'flowHorizontal'
-    | 'static';
-  blur?:
-    | number
-    | 'softest'
-    | 'soft'
-    | 'medium'
-    | 'strong'
-    | 'stronger'
-    | 'strongest'
-    | 'none';
-  scale?: number;
-  duration?: number;
-};
-
-export function GlowEffect({
-  className,
-  style,
-  colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F'],
-  mode = 'rotate',
-  blur = 'medium',
-  scale = 1,
-  duration = 5,
-}: GlowEffectProps) {
-  const BASE_TRANSITION = {
-    repeat: Infinity,
-    duration: duration,
-    ease: 'linear',
-  };
-
-  const animations = {
-    rotate: {
-      background: [
-        `conic-gradient(from 0deg at 50% 50%, ${colors.join(', ')})`,
-        `conic-gradient(from 360deg at 50% 50%, ${colors.join(', ')})`,
-      ],
-      transition: BASE_TRANSITION,
-    },
-    pulse: {
-      background: colors.map(
-        (color) =>
-          `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
-      ),
-      scale: [1 * scale, 1.1 * scale, 1 * scale],
-      opacity: [0.5, 0.8, 0.5],
-      transition: {
-        ...BASE_TRANSITION,
-        repeatType: 'mirror' as const,
-      },
-    },
-    breathe: {
-      background: [
-        ...colors.map(
-          (color) =>
-            `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
-        ),
-      ],
-      scale: [1 * scale, 1.05 * scale, 1 * scale],
-      transition: {
-        ...BASE_TRANSITION,
-        repeatType: 'mirror' as const,
-      },
-    },
-    colorShift: {
-      background: colors.map((color, index) => {
-        const nextColor = colors[(index + 1) % colors.length];
-        return `conic-gradient(from 0deg at 50% 50%, ${color} 0%, ${nextColor} 50%, ${color} 100%)`;
-      }),
-      transition: {
-        ...BASE_TRANSITION,
-        repeatType: 'mirror' as const,
-      },
-    },
-    flowHorizontal: {
-      background: colors.map((color) => {
-        const nextColor = colors[(colors.indexOf(color) + 1) % colors.length];
-        return `linear-gradient(to right, ${color}, ${nextColor})`;
-      }),
-      transition: {
-        ...BASE_TRANSITION,
-        repeatType: 'mirror' as const,
-      },
-    },
-    static: {
-      background: `linear-gradient(to right, ${colors.join(', ')})`,
-    },
-  };
-
-  const getBlurClass = (blur: GlowEffectProps['blur']) => {
-    if (typeof blur === 'number') {
-      return `blur-[${blur}px]`;
-    }
-
-    const presets = {
-      softest: 'blur-sm',
-      soft: 'blur',
-      medium: 'blur-md',
-      strong: 'blur-lg',
-      stronger: 'blur-xl',
-      strongest: 'blur-xl',
-      none: 'blur-none',
-    };
-
-    return presets[blur as keyof typeof presets];
-  };
-
-  return (
-    <motion.div
-      style={
-        {
-          ...style,
-          '--scale': scale,
-          willChange: 'transform',
-          backfaceVisibility: 'hidden',
-        } as React.CSSProperties
-      }
-      animate={animations[mode]}
-      className={cnUtil(
-        'pointer-events-none absolute inset-0 h-full w-full',
-        'scale-[var(--scale)] transform-gpu',
-        getBlurClass(blur),
-        className
-      )}
-    />
-  );
 }
 
 // Particles Component
@@ -371,7 +235,7 @@ const Particles: React.FC<ParticlesProps> = ({
     return remapped > 0 ? remapped : 0;
   };
 
-  const animate = () => {
+  const animate = useCallback(() => {
     clearContext();
     circles.current.forEach((circle: Circle, i: number) => {
       const edge = [
@@ -415,7 +279,11 @@ const Particles: React.FC<ParticlesProps> = ({
       }
     });
     window.requestAnimationFrame(animate);
-  };
+  }, [circles.current, vx, vy, ease, staticity, mouse.current.x, mouse.current.y]);
+
+  useEffect(() => {
+    animate();
+  }, [animate]);
 
   return (
     <div
@@ -503,7 +371,7 @@ const SACPLContactPage = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Button className="text-lg px-8 py-6">
                 Get In Touch
               </Button>
             </motion.div>
@@ -667,7 +535,7 @@ const SACPLContactPage = ({
                       rows={6}
                     />
                   </div>
-                  <Button type="submit" size="lg" className="w-full">
+                  <Button type="submit" className="w-full">
                     Submit Project Inquiry
                   </Button>
                 </form>
@@ -705,7 +573,7 @@ const SACPLContactPage = ({
                   <p className="text-neutral-600 mb-4">
                     {address}
                   </p>
-                  <Button variant="outline">
+                  <Button className="...">
                     Get Directions
                   </Button>
                 </div>
