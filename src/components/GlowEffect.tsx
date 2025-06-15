@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, TargetAndTransition } from 'framer-motion';
 
 export type GlowEffectProps = {
   className?: string;
@@ -43,7 +43,7 @@ export function GlowEffect({
     ease: 'linear' as const,
   };
 
-  const animations: Record<NonNullable<GlowEffectProps['mode']>, any> = {
+  const animations: Record<NonNullable<GlowEffectProps['mode']>, TargetAndTransition> = {
     rotate: {
       background: [
         `conic-gradient(from 0deg at 50% 50%, ${colors.join(', ')})`,
