@@ -318,7 +318,7 @@ const AboutPage = () => {
                   <p className="text-neutral-600 text-base font-medium">
                     Advanced Building Information Modeling and digital engineering for streamlined workflows and 3D visualization.
                   </p>
-                </div>
+            </div>
               </CardSpotlight>
               {/* Quality Assurance & Compliance Card */}
               <CardSpotlight className="bg-white border-none shadow-xl">
