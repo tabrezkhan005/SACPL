@@ -1,12 +1,10 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { Star, Award, Calendar } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernCTA from '@/components/ModernCTA';
-import { CardSpotlight } from '@/components/ui/card-spotlight';
 
 // Main Services Page Component
 const ServicesPage: React.FC = () => {

@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { Mail, MapPin, Phone, Building2, Clock, Users } from "lucide-react";
+import { Mail, MapPin, Phone, Building2, Clock } from "lucide-react";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernCTA from '@/components/ModernCTA';
@@ -446,9 +446,9 @@ const SACPLContactPage = ({
   companyName = "SACPL",
   tagline = "Building Excellence, Engineering Tomorrow",
   description = "Leading building and engineering company specializing in innovative construction solutions, structural engineering, and architectural excellence. We transform visions into reality with precision and quality.",
-  phone = "+1 (555) 123-4567",
+  phone = "0222614832",
   email = "contact@sacpl.com",
-  address = "123 Engineering Plaza, Construction District, City 12345",
+  address = "Mumbai, Maharashtra, India",
   workingHours = "Monday - Friday: 8:00 AM - 6:00 PM",
   projectsCompleted = "500+",
   yearsExperience = "25+",
@@ -631,11 +631,11 @@ const SACPLContactPage = ({
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="John" />
+                      <Input id="firstName" placeholder="First Name" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Doe" />
+                      <Input id="lastName" placeholder="Last Name" />
                     </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Building2, Users, Award, Calendar, Star, Briefcase, GraduationCap, Trophy, ImageIcon, PencilRuler } from 'lucide-react';
+import { Building2, Users, Award, Calendar, Star, Briefcase, GraduationCap, Trophy, PencilRuler } from 'lucide-react';
 import TimelineDemo from "@/components/ui/timeline-demo";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
@@ -318,7 +318,7 @@ const AboutPage = () => {
                   <p className="text-neutral-600 text-base font-medium">
                     Advanced Building Information Modeling and digital engineering for streamlined workflows and 3D visualization.
                   </p>
-            </div>
+                </div>
               </CardSpotlight>
               {/* Quality Assurance & Compliance Card */}
               <CardSpotlight className="bg-white border-none shadow-xl">

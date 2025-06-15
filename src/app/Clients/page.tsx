@@ -1,20 +1,15 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
-  Github,
-  Sparkles,
   Star,
   ArrowRight,
-  Menu,
-  X,
   Users,
   Award,
   Target,
-  Handshake,
-  CheckCircle,
-  TrendingUp
+  TrendingUp,
+  CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -23,6 +18,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModernCTA from '@/components/ModernCTA';
 import DotPattern from '@/components/DotPattern';
+import CustomHandshake from '@/components/CustomHandshake'; // Unique local handshake icon
 
 // Fixed positions for animated dots to avoid hydration mismatch
 const DOT_POSITIONS = [
@@ -171,7 +167,7 @@ const ClientLogosGrid = () => {
     <section className="py-20 px-6 bg-blue-50 mt-[-4rem] md:mt-[-6rem]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {clients.map((client, index) => (
+          {clients.map((client) => (
             <div
               key={client.name}
               className="group relative"
@@ -229,17 +225,17 @@ const ClientRelationshipsCard = () => {
                 Building Lasting <span className="text-blue-700">Partnerships</span>
               </h2>
               <p className="text-lg text-blue-800 leading-relaxed">
-                At SACPL, our client-first approach ensures every partnership is built on trust, transparency, and exceptional delivery. We don't just complete projects—we create long-term relationships that drive mutual success.
+                At SACPL, our client-first approach ensures every partnership is built on trust, transparency, and exceptional delivery. We don&apos;t just complete projects—we create long-term relationships that drive mutual success.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: 0.1 * stats.indexOf(stat) }}
                   className="text-center p-4 rounded-lg bg-blue-50"
                 >
                   <stat.icon className={`w-8 h-8 mx-auto mb-2 ${stat.color}`} />
@@ -257,7 +253,7 @@ const ClientRelationshipsCard = () => {
             <Card className="p-8 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg">
               <div className="pb-6 border-b border-blue-100 mb-4 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center">
-                  <Handshake className="w-6 h-6 text-white" />
+                  <CustomHandshake className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-xl text-blue-900">Our Commitment</div>
@@ -265,7 +261,7 @@ const ClientRelationshipsCard = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                {features.map((feature, index) => (
+                {features.map((feature) => (
                   <div
                     key={feature}
                     className="flex items-center gap-3"

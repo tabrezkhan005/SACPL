@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { User } from "lucide-react";
+import Link from 'next/link';
 
 /**
  * Header Component
@@ -72,24 +73,9 @@ export default function Header() {
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {/* Navigation Links */}
-              <a
-                href="#home"
-                className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                About
-              </a>
-              <a
-                href="#services"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                Services
-              </a>
+              <Link href="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Home</Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">About</Link>
+              <Link href="/services" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Services</Link>
               {/* New Projects Link */}
               <a
                 href="#projects"
@@ -98,18 +84,8 @@ export default function Header() {
                 Projects
               </a>
               {/* New Clients Link */}
-              <a
-                href="#clients"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                Clients
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
-              >
-                Contact
-              </a>
+              <Link href="/Clients" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Clients</Link>
+              <Link href="/Contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Contact</Link>
             </div>
           </nav>
 
@@ -176,27 +152,9 @@ export default function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/80 backdrop-blur-md border-t border-gray-100">
               {/* Mobile Navigation Links */}
-              <a
-                href="#home"
-                className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
-                onClick={toggleMobileMenu}
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
-                onClick={toggleMobileMenu}
-              >
-                About
-              </a>
-              <a
-                href="#services"
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
-                onClick={toggleMobileMenu}
-              >
-                Services
-              </a>
+              <Link href="/" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200" onClick={toggleMobileMenu}>Home</Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200" onClick={toggleMobileMenu}>About</Link>
+              <Link href="/services" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200" onClick={toggleMobileMenu}>Services</Link>
               {/* New Projects Link */}
               <a
                 href="#projects"
@@ -206,20 +164,8 @@ export default function Header() {
                 Projects
               </a>
               {/* New Clients Link */}
-              <a
-                href="#clients"
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
-                onClick={toggleMobileMenu}
-              >
-                Clients
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200"
-                onClick={toggleMobileMenu}
-              >
-                Contact
-              </a>
+              <Link href="/Clients" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200" onClick={toggleMobileMenu}>Clients</Link>
+              <Link href="/Contact" className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200" onClick={toggleMobileMenu}>Contact</Link>
               {/* Profile Icon - Mobile */}
               <div className="pt-4 pb-2 flex gap-2">
                 <a
