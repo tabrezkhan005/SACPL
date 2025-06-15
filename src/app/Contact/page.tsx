@@ -51,7 +51,6 @@ interface ParticlesProps {
   staticity?: number;
   ease?: number;
   size?: number;
-  refresh?: boolean;
   color?: string;
   vx?: number;
   vy?: number;
@@ -99,7 +98,6 @@ const Particles: React.FC<ParticlesProps> = ({
   staticity = 50,
   ease = 50,
   size = 0.4,
-  refresh = false,
   color = "#ffffff",
   vx = 0,
   vy = 0,
@@ -263,7 +261,7 @@ const Particles: React.FC<ParticlesProps> = ({
       }
     });
     window.requestAnimationFrame(animate);
-  }, [circles.current, vx, vy, ease, staticity, mouse.current.x, mouse.current.y, drawCircle, circleParams]);
+  }, [circles.current, vx, vy, ease, staticity, drawCircle, circleParams]);
 
   useEffect(() => {
     animate();
@@ -333,7 +331,6 @@ const SACPLContactPage = ({
           quantity={80}
           ease={80}
           color="#0ea5e9"
-          refresh
         />
         <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.div
