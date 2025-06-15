@@ -77,7 +77,10 @@ function TextShimmer({
   duration = 2,
   spread = 2,
 }: TextShimmerProps) {
-  const MotionComponent = motion(Component as unknown);
+  // Type-safe dynamic motion component creation
+  const MotionComponent = motion(
+    Component as keyof JSX.IntrinsicElements | React.ComponentType<any>
+  );
 
   const dynamicSpread = React.useMemo(() => {
     return children.length * spread;
