@@ -1,4 +1,4 @@
-import { motion, linear } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export type GlowEffectProps = {
   className?: string;
@@ -40,7 +40,7 @@ export function GlowEffect({
   const BASE_TRANSITION = {
     repeat: Infinity,
     duration: duration,
-    ease: linear,
+    ease: 'linear',
   };
 
   const animations = {

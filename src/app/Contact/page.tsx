@@ -115,6 +115,28 @@ const Particles: React.FC<ParticlesProps> = ({
     initCanvas();
   }, [refresh]);
 
+  const resizeCanvas = useCallback(() => {
+    if (canvasContainerRef.current && canvasRef.current && context.current) {
+      circles.current.length = 0;
+      canvasSize.current.w = canvasContainerRef.current.offsetWidth;
+      canvasSize.current.h = canvasContainerRef.current.offsetHeight;
+      canvasRef.current.width = canvasSize.current.w * dpr;
+      canvasRef.current.height = canvasSize.current.h * dpr;
+      canvasRef.current.style.width = `${canvasSize.current.w}px`;
+      canvasRef.current.style.height = `${canvasSize.current.h}px`;
+      context.current.scale(dpr, dpr);
+    }
+  }, [canvasContainerRef, canvasRef, context, dpr, canvasSize]);
+
+  const drawParticles = useCallback(() => {
+    clearContext();
+    const particleCount = quantity;
+    for (let i = 0; i < particleCount; i++) {
+      const circle = circleParams();
+      drawCircle(circle);
+    }
+  }, [quantity, circleParams, drawCircle]);
+
   const initCanvas = useCallback(() => {
     resizeCanvas();
     drawParticles();
@@ -146,19 +168,6 @@ const Particles: React.FC<ParticlesProps> = ({
     dy: number;
     magnetism: number;
   };
-
-  const resizeCanvas = useCallback(() => {
-    if (canvasContainerRef.current && canvasRef.current && context.current) {
-      circles.current.length = 0;
-      canvasSize.current.w = canvasContainerRef.current.offsetWidth;
-      canvasSize.current.h = canvasContainerRef.current.offsetHeight;
-      canvasRef.current.width = canvasSize.current.w * dpr;
-      canvasRef.current.height = canvasSize.current.h * dpr;
-      canvasRef.current.style.width = `${canvasSize.current.w}px`;
-      canvasRef.current.style.height = `${canvasSize.current.h}px`;
-      context.current.scale(dpr, dpr);
-    }
-  }, [canvasContainerRef, canvasRef, context, dpr, canvasSize]);
 
   const circleParams = useCallback((): Circle => {
     const x = Math.floor(Math.random() * canvasSize.current.w);
@@ -213,15 +222,6 @@ const Particles: React.FC<ParticlesProps> = ({
       );
     }
   };
-
-  const drawParticles = useCallback(() => {
-    clearContext();
-    const particleCount = quantity;
-    for (let i = 0; i < particleCount; i++) {
-      const circle = circleParams();
-      drawCircle(circle);
-    }
-  }, [quantity, circleParams, drawCircle]);
 
   const remapValue = (
     value: number,
