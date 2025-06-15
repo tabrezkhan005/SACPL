@@ -62,10 +62,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 // Text Shimmer component for animated text effects
-// Restrict 'as' to only types accepted by motion(): string tag or React component
+// Use React.ElementType for 'as', which is globally available and compatible with Framer Motion
 interface TextShimmerProps {
   children: string;
-  as?: keyof JSX.IntrinsicElements | React.ComponentType<unknown>;
+  as?: React.ElementType;
   className?: string;
   duration?: number;
   spread?: number;
@@ -78,7 +78,7 @@ function TextShimmer({
   duration = 2,
   spread = 2,
 }: TextShimmerProps) {
-  // Type-safe dynamic motion component creation
+  // Type-safe dynamic motion component creation using React.ElementType
   const MotionComponent = motion(Component);
 
   const dynamicSpread = React.useMemo(() => {
@@ -151,6 +151,8 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
   theme = 'light',
 }) => {
   // Animation variants for container
+  // Use cubic-bezier array for 'ease' to satisfy Framer Motion's strict types
+  // 'easeOut' ≈ [0, 0, 0.58, 1]
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -158,13 +160,14 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: [0, 0, 0.58, 1],
         staggerChildren: 0.2,
       },
     },
   };
 
   // Animation variants for child elements
+  // 'easeOut' ≈ [0, 0, 0.58, 1]
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -172,18 +175,19 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: [0, 0, 0.58, 1],
       },
     },
   };
 
   // Button hover animation variants
+  // 'easeInOut' ≈ [0.42, 0, 0.58, 1]
   const buttonMotionVariants = {
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.2,
-        ease: "easeInOut",
+        ease: [0.42, 0, 0.58, 1],
       },
     },
     tap: {
@@ -274,7 +278,7 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
                       duration: 2,
                       repeat: Infinity,
                       repeatDelay: 3,
-                      ease: "linear",
+                      ease: [0, 0, 1, 1], // 'linear' cubic-bezier
                     }}
                   />
                 </a>
@@ -316,7 +320,7 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
                   duration: 2,
                   repeat: Infinity,
                   delay: i * 0.3,
-                  ease: "easeInOut",
+                  ease: [0.42, 0, 0.58, 1], // 'easeInOut' cubic-bezier
                 }}
               />
             ))}
