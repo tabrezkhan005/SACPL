@@ -62,9 +62,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 // Text Shimmer component for animated text effects
+// Restrict 'as' to only types accepted by motion(): string tag or React component
 interface TextShimmerProps {
   children: string;
-  as?: React.ElementType;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<unknown>;
   className?: string;
   duration?: number;
   spread?: number;
@@ -77,10 +78,8 @@ function TextShimmer({
   duration = 2,
   spread = 2,
 }: TextShimmerProps) {
-  // Use 'unknown' instead of 'any' for linter safety and type correctness
-  const MotionComponent = motion(
-    Component as keyof JSX.IntrinsicElements | React.ComponentType<unknown>
-  );
+  // Type-safe dynamic motion component creation
+  const MotionComponent = motion(Component);
 
   const dynamicSpread = React.useMemo(() => {
     return children.length * spread;
