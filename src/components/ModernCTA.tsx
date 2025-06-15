@@ -77,9 +77,9 @@ function TextShimmer({
   duration = 2,
   spread = 2,
 }: TextShimmerProps) {
-  // Type-safe dynamic motion component creation
+  // Use 'unknown' instead of 'any' for linter safety and type correctness
   const MotionComponent = motion(
-    Component as keyof JSX.IntrinsicElements | React.ComponentType<any>
+    Component as keyof JSX.IntrinsicElements | React.ComponentType<unknown>
   );
 
   const dynamicSpread = React.useMemo(() => {
