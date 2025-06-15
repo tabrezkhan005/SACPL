@@ -63,6 +63,7 @@ Button.displayName = "Button";
 
 // Text Shimmer component for animated text effects
 // Use React.ElementType for 'as', which is globally available and compatible with Framer Motion
+// This avoids JSX namespace errors and is the React-recommended type for dynamic components
 interface TextShimmerProps {
   children: string;
   as?: React.ElementType;
