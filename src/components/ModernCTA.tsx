@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, easeOut, easeInOut } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
