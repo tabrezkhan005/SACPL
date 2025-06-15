@@ -152,8 +152,8 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
   theme = 'light',
 }) => {
   // Animation variants for container
-  // Use cubic-bezier array for 'ease' to satisfy Framer Motion's strict types
-  // 'easeOut' ≈ [0, 0, 0.58, 1]
+  // Use string for 'ease' to satisfy Framer Motion's strict types
+  // 'easeOut' is a valid string value
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -161,14 +161,14 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0, 0, 0.58, 1],
+        ease: 'easeOut',
         staggerChildren: 0.2,
       },
     },
   };
 
   // Animation variants for child elements
-  // 'easeOut' ≈ [0, 0, 0.58, 1]
+  // 'easeOut' is a valid string value
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -176,19 +176,19 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0, 0, 0.58, 1],
+        ease: 'easeOut',
       },
     },
   };
 
   // Button hover animation variants
-  // 'easeInOut' ≈ [0.42, 0, 0.58, 1]
+  // 'easeInOut' is a valid string value
   const buttonMotionVariants = {
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.2,
-        ease: [0.42, 0, 0.58, 1],
+        ease: 'easeInOut',
       },
     },
     tap: {
