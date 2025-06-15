@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -151,9 +151,8 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
   className,
   theme = 'light',
 }) => {
-  // Animation variants for container
-  // Use string for 'ease' to satisfy Framer Motion's strict types
-  // 'easeOut' is a valid string value
+  // Omit 'ease' for type safety with Framer Motion v10+
+  // Framer Motion's default easing will be used
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -161,14 +160,11 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
         staggerChildren: 0.2,
       },
     },
   };
 
-  // Animation variants for child elements
-  // 'easeOut' is a valid string value
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -176,19 +172,15 @@ const ModernCTA: React.FC<ModernCTAProps> = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
       },
     },
   };
 
-  // Button hover animation variants
-  // 'easeInOut' is a valid string value
   const buttonMotionVariants = {
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.2,
-        ease: 'easeInOut',
       },
     },
     tap: {
